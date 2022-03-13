@@ -1,59 +1,144 @@
-<!doctype html>
-<!--[if lte IE 9]>
-<html lang="en" class="oldie">
-<![endif]-->
-<!--[if gt IE 9]><!-->
-<html lang="en">
-<!--<![endif]-->
-<head>
-<meta charset="utf-8">
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="+E10iygkXeluTddmfdBeQIwj7JxCca1ykzrvu0rHCf0QwaLGVKeQZMvXhdKTw/VhNgRU+BYatX8Vt/VTn5N/1A==" />
 
-<title>CodePen - Magic Card</title>
-<link rel="stylesheet" media="screen" href="https://cpwebassets.codepen.io/assets/fullpage/fullpage-1580f96ce81ff0a427cf57dda2748ce646c38efc201ae5942a29958cffa6856d.css" />
-<link rel="stylesheet" media="all" href="https://cpwebassets.codepen.io/assets/global/global-c1f1069aa702fd42a13ec5f6d936621e2ced7f0f3c3e42d5f597302e73572b54.css" />
-<link rel="stylesheet" media="screen" href="https://cpwebassets.codepen.io/assets/packs/css/everypage-4888e53e.css" />
-<link rel="stylesheet" media="all" href="https://cpwebassets.codepen.io/assets/page/page-be21d7391d3537792a8c64a95ec81bcdb3dddc035a018c9ffab6e659e736bf1f.css" />
-<link rel="stylesheet" media="all" href="https://cpwebassets.codepen.io/assets/editor/editor-ce84559792d1fef032d25f19e7cf0e24b7e0a3308e8c697b3b8ef7cd2411b83f.css" />
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@CodePen">
-<meta name="twitter:title" content="Magic Card">
-<meta name="twitter:description" content="Yet another glowing card...">
-<meta name="twitter:image" content="https://shots.codepen.io/hnandhn/pen/zYpYYEO-800.jpg?version=1647157988">
-<meta property="og:image" content="https://shots.codepen.io/hnandhn/pen/zYpYYEO-800.jpg?version=1647157988" itemprop="thumbnailUrl">
-<meta property="og:title" content="Magic Card">
-<meta property="og:url" content="https://codepen.io/hnandhn/details/zYpYYEO">
-<meta property="og:site_name" content="CodePen">
-<meta property="og:description" content="Yet another glowing card...">
-<link rel="alternate" type="application/json+oembed" href="https://codepen.io/api/oembed?url=https%3A%2F%2Fcodepen.io%2Fhnandhn%2Fpen%2FzYpYYEO&format=json" title="Magic Card" />
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
 <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
 <meta name="apple-mobile-web-app-title" content="CodePen">
+
 <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
 <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
-<script nonce="RuA2lw06Jds=">
-  /* Firefox needs this to prevent FOUT */
-</script>
+
+
+  <title>CodePen - Magic Card</title>
+  
+  
+  
+  
+<style>
+:root {
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+
+
+body {
+  min-height: 100vh;
+  background: #212534;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+}
+
+
+.card {
+  background: #191c29;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 3px;
+  position: relative;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  font-size: 1.5em;
+  color: rgb(88 199 250 / 0%);
+  cursor: pointer;
+  font-family: cursive;
+}
+
+.card:hover {
+  color: rgb(88 199 250 / 100%);
+  transition: color 1s;
+}
+.card:hover:before, .card:hover:after {
+  animation: none;
+  opacity: 0;
+}
+
+
+.card::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+a {
+  color: #212534;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+</style>
+
+  
+  
+  
+  
+
 </head>
-<body class="fullpage logged-in sidebar-false">
-<header id="main-header" class="main-header"></header>
-<div class="oldie-header">
-<a href="https://codepen.io/hnandhn/pen/zYpYYEO">Edit Pen</a>
+
+<body translate="no" >
+  <div class="card">
+ hn#5010 , 
+staff at discord.gg/meo .
 </div>
-<div id="result-iframe-wrap" role="main">
-<iframe id="result" src="https://cdpn.io/hnandhn/fullpage/zYpYYEO" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="accelerometer; camera; encrypted-media; display-capture; geolocation; gyroscope; microphone; midi; clipboard-read; clipboard-write; web-share" allowTransparency="true" allowpaymentrequest="true" allowfullscreen="true" class="result-iframe" loading="lazy"></iframe>
-</div>
-<div id="full-view-ad"></div>
-<textarea id="init-data" style="display:none">{&quot;__browser&quot;:{&quot;device&quot;:&quot;unknown_device&quot;,&quot;mobile&quot;:false,&quot;name&quot;:&quot;chrome&quot;,&quot;platform&quot;:&quot;pc&quot;,&quot;version&quot;:&quot;99&quot;},&quot;__constants&quot;:{&quot;gridIframeSandboxAttributes&quot;:&quot;allow-forms allow-modals allow-pointer-lock allow-presentation allow-same-origin allow-scripts&quot;},&quot;__CPDATA&quot;:{&quot;domain_iframe&quot;:&quot;https://cdpn.io&quot;,&quot;environment&quot;:&quot;production&quot;,&quot;host&quot;:&quot;codepen.io&quot;,&quot;iframe_allow&quot;:&quot;accelerometer; camera; encrypted-media; display-capture; geolocation; gyroscope; microphone; midi; clipboard-read; clipboard-write; web-share&quot;,&quot;iframe_sandbox&quot;:&quot;allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation&quot;},&quot;__user&quot;:{&quot;anon&quot;:false,&quot;base_url&quot;:&quot;/hnandhn/&quot;,&quot;current_team_id&quot;:0,&quot;current_team_hashid&quot;:null,&quot;hashid&quot;:&quot;aNVVwO&quot;,&quot;id&quot;:7708373,&quot;itemType&quot;:&quot;user&quot;,&quot;name&quot;:&quot;hn&quot;,&quot;paid&quot;:false,&quot;tier&quot;:0,&quot;username&quot;:&quot;hnandhn&quot;,&quot;created_at&quot;:&quot;2022-02-08T12:19:32.496Z&quot;,&quot;email_verified&quot;:true,&quot;collections_count&quot;:0,&quot;collections_private_count&quot;:0,&quot;followers_count&quot;:0,&quot;followings_count&quot;:2,&quot;pens_count&quot;:9,&quot;pens_private_count&quot;:0,&quot;projects_count&quot;:0,&quot;projects_private_count&quot;:0},&quot;__firebase&quot;:{&quot;config&quot;:{&quot;apiKey&quot;:&quot;AIzaSyBgLAe7N_MdFpuVofMkcQLGwwhUu5tuxls&quot;,&quot;authDomain&quot;:&quot;codepen-store-production.firebaseapp.com&quot;,&quot;databaseURL&quot;:&quot;https://codepen-store-production.firebaseio.com&quot;,&quot;disabled&quot;:false,&quot;projectId&quot;:&quot;codepen-store-production&quot;},&quot;token&quot;:&quot;eyJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImNsYWltcyI6eyJvd25lcklkIjoiYU5WVndPIiwiYWRtaW4iOmZhbHNlfSwiZXhwIjoxNjQ3MTYxODUzLCJpYXQiOjE2NDcxNTgyNTMsImlzcyI6ImZpcmViYXNlLWFkbWluc2RrLThva3lsQGNvZGVwZW4tc3RvcmUtcHJvZHVjdGlvbi5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInN1YiI6ImZpcmViYXNlLWFkbWluc2RrLThva3lsQGNvZGVwZW4tc3RvcmUtcHJvZHVjdGlvbi5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInVpZCI6ImFOVlZ3TyJ9.ZDx-LZniuijXgekY6_NLgupw4u6GeELAR-KspHaYyXSYvT0TKjJcJCCmqLApP3GXHfN_yCxfUyuQe_IMFAu8TNtlPXlqDwzJTLfLb6zchick6E6QCrUAl8btPYMjVcG4egAhIGS4BhzoYF_or6rIO8UPyvKAMAiuP58KW4uMqQOzREk-mg6Xec5mMKbYjPGw5qzhZyqvwDCBsCYrqWzlHdMggqRBHD4n16rU41fieisytzx2xc6UsJDXHk-_xvpvr6ekpEwvE6r6PtS40j0nYYrYpubLAI9IFe8MStsP1Fd07OM9yYvJ1LMNzEptFlrd9OKEbI_x1rZkbwK1HSLkXA&quot;},&quot;__graphql&quot;:{&quot;data&quot;:{&quot;sessionUser&quot;:{&quot;id&quot;:&quot;aNVVwO&quot;,&quot;name&quot;:&quot;hn&quot;,&quot;title&quot;:&quot;hn&quot;,&quot;avatar80&quot;:&quot;https://assets.codepen.io/7708373/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=80&amp;version=1644415704&amp;width=80&quot;,&quot;avatar512&quot;:&quot;https://assets.codepen.io/7708373/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=512&amp;version=1644415704&amp;width=512&quot;,&quot;currentContext&quot;:{&quot;id&quot;:&quot;aNVVwO&quot;,&quot;baseUrl&quot;:&quot;/hnandhn&quot;,&quot;title&quot;:&quot;hn&quot;,&quot;name&quot;:&quot;hn&quot;,&quot;avatar80&quot;:&quot;https://assets.codepen.io/7708373/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=80&amp;version=1644415704&amp;width=80&quot;,&quot;avatar512&quot;:&quot;https://assets.codepen.io/7708373/internal/avatars/users/default.png?fit=crop&amp;format=auto&amp;height=512&amp;version=1644415704&amp;width=512&quot;,&quot;username&quot;:&quot;hnandhn&quot;,&quot;contextType&quot;:&quot;USER&quot;,&quot;__typename&quot;:&quot;User&quot;},&quot;currentTeamId&quot;:null,&quot;baseUrl&quot;:&quot;/hnandhn&quot;,&quot;username&quot;:&quot;hnandhn&quot;,&quot;admin&quot;:false,&quot;anon&quot;:false,&quot;pro&quot;:false,&quot;verified&quot;:true,&quot;teams&quot;:[],&quot;__typename&quot;:&quot;User&quot;}}},&quot;__pay_stripe_public&quot;:&quot;pk_NgCjQmQs7wXOFmfNC0LKMgEkmlThn&quot;,&quot;__pay_braintree_env&quot;:&quot;production&quot;,&quot;__item&quot;:&quot;{\&quot;id\&quot;:59333571,\&quot;hashid\&quot;:\&quot;zYpYYEO\&quot;,\&quot;itemType\&quot;:\&quot;pen\&quot;,\&quot;user_id\&quot;:7708373,\&quot;slug_hash\&quot;:\&quot;zYpYYEO\&quot;,\&quot;private\&quot;:false,\&quot;slug_hash_private\&quot;:\&quot;fc954469b6a4a41045821c5f166da02f\&quot;}&quot;,&quot;__profiled&quot;:{&quot;base_url&quot;:&quot;/hnandhn&quot;,&quot;hashid&quot;:&quot;aNVVwO&quot;,&quot;id&quot;:7708373,&quot;name&quot;:&quot;hn&quot;,&quot;type&quot;:&quot;user&quot;,&quot;username&quot;:&quot;hnandhn&quot;},&quot;__pageType&quot;:&quot;full&quot;}</textarea>
-<div id="popup-overlay" class="overlay popup-overlay"></div>
-<div id="modal-overlay" class="overlay modal-overlay"></div>
-<script src="https://cpwebassets.codepen.io/assets/common/everypage-f84dd91ff413b23b8d1a6f7eadc615dc53c384f74f8254e068449db735b2c8cd.js"></script>
-<script src="https://fast.appcues.com/69186.js"></script>
-<script src="https://cpwebassets.codepen.io/assets/common/analytics_and_notifications-afa6925cbcff840929f2b7c543587d5f9d7a461af81ee7ca80631c8e37ac42f2.js"></script>
-<script src="https://cpwebassets.codepen.io/assets/packs/js/vendor-736fa5cedc851ad2a521.chunk.js"></script>
-<script src="https://cpwebassets.codepen.io/assets/packs/js/1-3d8282ef6bd7fba3d503.chunk.js"></script>
-<script src="https://cpwebassets.codepen.io/assets/packs/js/everypage-2dea8271bba83788191b.js"></script>
-<script src="https://cpwebassets.codepen.io/assets/editor/full/full_page_renderer-8edf9934af5f33c7e00fe30580012df4d2ab48aad3bcc7f581030e5b876bff3b.js"></script>
+
+<a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">hn</a>
+  
+  
+  
+  
+
 </body>
+
 </html>
+ 
